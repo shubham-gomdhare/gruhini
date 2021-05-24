@@ -27,7 +27,6 @@ void main() => runApp(
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
@@ -57,11 +56,34 @@ class Body extends StatelessWidget {
   }
 }
 
-class LargeChild extends StatelessWidget {
+class LargeChild extends StatefulWidget {
+  @override
+  LargeChildState createState() => LargeChildState();
+}
+
+class LargeChildState extends State<LargeChild> {
+
+  final ScrollController _scrollController = ScrollController();
+  double _scrollPosition = 0;
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+    });
+  }
+
+  @override
+  void initState() {
+    _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
+      controller: _scrollController,
+      physics: ClampingScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
@@ -300,11 +322,34 @@ class LargeChild extends StatelessWidget {
   }
 }
 
-class SmallChild extends StatelessWidget {
+class SmallChild extends StatefulWidget {
+  @override
+  SmallChildState createState() => SmallChildState();
+}
+
+class SmallChildState extends State<SmallChild> {
+
+  final ScrollController _scrollController = ScrollController();
+  double _scrollPosition = 0;
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+    });
+  }
+
+  @override
+  void initState() {
+    _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
+      physics: ClampingScrollPhysics(),
+      controller: _scrollController,
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
@@ -347,7 +392,7 @@ class SmallChild extends StatelessWidget {
                 ),
                 Text("  G R U H I N I   F O O D  ",
                   style: GoogleFonts.jacquesFrancois(
-                    color: Color(0xFFE0E5EC),
+                    color: Colors.white,
                     textStyle: Theme.of(context).textTheme.headline1,
                     fontSize: size.width*0.072,
                     fontWeight: FontWeight.bold,
@@ -356,7 +401,7 @@ class SmallChild extends StatelessWidget {
                 ),
                 Text("P R O D U C T S",
                   style: GoogleFonts.jacquesFrancois(
-                    color: Color(0xFFE0E5EC),
+                    color: Colors.white,
                     textStyle: Theme.of(context).textTheme.headline1,
                     fontSize: size.width*0.07,
                     fontWeight: FontWeight.bold,
@@ -370,15 +415,15 @@ class SmallChild extends StatelessWidget {
                   width: size.width*0.85,
                   child: Divider(
                     thickness: size.width*0.005,
-                    color: Colors.white,
+                    color: Color(0xFFE0E5EC),
                   ),
                 ),
                 Text("Housewives' First Choice",
                   style: GoogleFonts.roboto(
-                    color: Color(0xFFE0E5EC),
+                    color: Colors.white,
                     textStyle: Theme.of(context).textTheme.subtitle1,
                     fontSize: size.width*0.05,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                   //TextStyle(fontFamily: "",color: Colors.black54,fontSize: size.width*0.03)
                 ),
@@ -464,7 +509,7 @@ class SmallChild extends StatelessWidget {
             ),
           ),
           Container(
-            height: size.height,
+            height: size.height + 10,
             width: size.width,
             color: Color(0xFF283747),
             child: Center(

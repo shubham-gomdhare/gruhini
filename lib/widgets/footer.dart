@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gruhini/util/responsiveLayout.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Footer extends StatefulWidget{
   @override
@@ -9,6 +11,9 @@ class Footer extends StatefulWidget{
 }
 
 class FooterState extends State<Footer>{
+
+  void _launchURL(String _url) async =>
+      await launch(_url);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class FooterState extends State<Footer>{
               child: Text("112, Mahalaxmi Nagar, Opp. Jatra Hotel, Adgoan Shivar, Nashik - 422003",
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 3,
+                maxLines: 4,
                 style: GoogleFonts.openSans(
                   color:  Colors.white,
                   textStyle: Theme.of(context).textTheme.body1,
@@ -61,7 +66,7 @@ class FooterState extends State<Footer>{
             ),
             Container(
               constraints: BoxConstraints(
-                maxWidth: size.width * 0.8,
+                maxWidth: size.width * 0.85,
               ),
               child: Text("spenter101@gmail.com",
                 textAlign: TextAlign.center,
@@ -69,14 +74,14 @@ class FooterState extends State<Footer>{
                 style: GoogleFonts.openSans(
                   color:  Colors.white,
                   textStyle: Theme.of(context).textTheme.body1,
-                  fontSize: size.width*0.05,
+                  fontSize: size.width*0.048,
                   fontWeight: FontWeight.w100,
                 ),
               ),
             ),
             Container(
               constraints: BoxConstraints(
-                maxWidth: size.width * 0.8,
+                maxWidth: size.width * 0.85,
               ),
               child: Text("+918208063459",
                 textAlign: TextAlign.center,
@@ -84,7 +89,7 @@ class FooterState extends State<Footer>{
                 style: GoogleFonts.openSans(
                   color:  Colors.white,
                   textStyle: Theme.of(context).textTheme.body1,
-                  fontSize: size.width*0.05,
+                  fontSize: size.width*0.048,
                   fontWeight: FontWeight.w100,
                 ),
               ),
@@ -103,18 +108,21 @@ class FooterState extends State<Footer>{
             SizedBox(
               height: size.height*0.015,
             ),
-            Container(
-                constraints: BoxConstraints(
-                  maxWidth: size.width * 0.8,
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Icon(
-                    CupertinoIcons.circle_grid_hex_fill,
-                    size: size.height*0.04,
-                    color: Colors.white,
+            GestureDetector(
+              onTap: (){
+                _launchURL('whatsapp://send?phone=+918208063459&text=Hello!!');
+              },
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset('assets/gruhini/wa.png',
+                    height: 50,
+                    width: 50,
                   ),
-                )
+                ),
+              ),
             ),
             SizedBox(
               height: size.width*0.1,
@@ -245,18 +253,21 @@ class FooterState extends State<Footer>{
                 SizedBox(
                   height: size.height*0.015,
                 ),
-                Container(
-                  constraints: BoxConstraints(
-                    maxWidth: size.width * 0.25,
-                  ),
+                GestureDetector(
+                  onTap: (){
+                    _launchURL('whatsapp://send?phone=+918208063459&text=Hello!!');
+                  },
                   child: Align(
                     alignment: Alignment.center,
-                    child: Icon(
-                      CupertinoIcons.circle_grid_hex_fill,
-                      size: size.height*0.04,
-                      color: Colors.white,
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset('assets/gruhini/wa.png',
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
-                  )
+                  ),
                 ),
               ],
             ),

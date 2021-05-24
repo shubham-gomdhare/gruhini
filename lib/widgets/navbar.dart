@@ -16,6 +16,63 @@ class NavBar extends StatelessWidget {
     }).toList();
   }
 
+  showMenu(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) {
+        Size size = MediaQuery.of(context).size;
+        return Container(
+          child: SimpleDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            children: [
+              Center(
+                child: Container(
+                  //padding: EdgeInsets.only(left: size.width*0.15,right: size.width*0.15,),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.black38.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(15),
+
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          FlatButton(
+                            onPressed: (){
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(Icons.close,color: Colors.white,),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: size.width*0.05,),
+                      GestureDetector(
+                        onTap:() => Navigator.of(context).pop(),
+                        child:Text("Products",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
+                      ),
+                      SizedBox(height: size.width*0.05,),
+                      GestureDetector(
+                        onTap:() => Navigator.of(context).pop(),
+                        child:Text("Contact",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
+                      ),
+                      SizedBox(height: size.width*0.08,),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,7 +122,7 @@ class NavBar extends StatelessWidget {
                     ),),
                   ),
                   SizedBox(
-                    width: 15,
+                    width: 20,
                   ),
                   GestureDetector(
                     child: Text("Contact", style: GoogleFonts.lato(
@@ -79,7 +136,7 @@ class NavBar extends StatelessWidget {
                   SizedBox(
                     width: 15,
                   ),
-                ]..add(
+                ]/*..add(
                     InkWell(
                         child: ClayContainer(
                           //margin: EdgeInsets.only(left: 20),
@@ -114,7 +171,7 @@ class NavBar extends StatelessWidget {
                           ),
                         ),
                     ),
-                ),
+                ),*/
               )
             else
               Container(child: InkWell(
@@ -131,7 +188,8 @@ class NavBar extends StatelessWidget {
                       ),
                   child: GestureDetector(
                     onTap: (){
-                      print("Menu PRESSED");
+                      print("clicked");
+                      showMenu(context);
                     },
                     child: Material(
                       color: Colors.transparent,

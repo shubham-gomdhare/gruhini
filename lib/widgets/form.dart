@@ -44,11 +44,20 @@ class _FormState extends State<Form_>{
 
   void whatsAppOpen(Map<String,dynamic> msg) async {
 
-    var body = json.encode(msg);
-    var whatsappUrl ="whatsapp://send?phone=+917057605444&text=${body.toString()}";
+    String body =
+        "Name: "+ msg['name'].toString() + "%0a" +
+        "Mobile: " + msg['mobile'].toString() + "%0a" +
+        "Address: " + msg['address'].toString() + "%0a" +
+        "Idli Batter: " +msg['idli'].toString() + " KG" +  "%0a" +
+        "Medu-vada Batter: " +msg['meduvada'].toString() + " KG" +  "%0a" +
+        "Total: " + msg['total'].toString() + "%0a" ;
+
+
+
+    var whatsappUrl ="whatsapp://send?phone=+918208063459&text=$body";
     try {
-      //await launch(whatsappUrl);
-      await canLaunch(whatsappUrl)? launch(whatsappUrl):_showDialog(this.context);
+      await launch(whatsappUrl);
+      //await canLaunch(whatsappUrl)? launch(whatsappUrl):_showDialog(this.context);
     }catch(e){
       print(e.toString());
     }
@@ -527,11 +536,12 @@ class _FormState extends State<Form_>{
                               });
                             }
                             Map<String,dynamic> msg = {
-                              "Name" : nameController.text,
-                              "Mobile" : mobileController.text,
-                              "Address" : addressController.text,
-                              "Idli Batter" : _b1_count,
-                              "Medu-Vada Batter" : _b2_count,
+                              "name" : nameController.text,
+                              "mobile" : mobileController.text,
+                              "address" : addressController.text,
+                              "idli" : _b1_count,
+                              "meduvada" : _b2_count,
+                              "total" : total,
                             };
                             whatsAppOpen(msg);
                           }else{
@@ -1073,11 +1083,12 @@ class _FormState extends State<Form_>{
                               });
                             }
                             Map<String,dynamic> msg = {
-                              "Name" : nameController.text,
-                              "Mobile" : mobileController.text,
-                              "Address" : addressController.text,
-                              "Idli Batter" : _b1_count,
-                              "Medu-Vada Batter" : _b2_count,
+                              "name" : nameController.text,
+                              "mobile" : mobileController.text,
+                              "address" : addressController.text,
+                              "idli" : _b1_count,
+                              "meduvada" : _b2_count,
+                              "total" : total
                             };
                             whatsAppOpen(msg);
                           }else{
