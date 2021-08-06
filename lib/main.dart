@@ -477,7 +477,7 @@ class SmallChildState extends State<SmallChild> {
           ),
           Container(
             color: Color(0xFFE0E5EC),
-            height: size.height * 1.65,
+            height: size.height * 1.8,
             width:size.width,
             child: Column(
               children: [

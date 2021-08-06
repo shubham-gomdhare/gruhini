@@ -79,7 +79,7 @@ class _FormState extends State<Form_>{
                     blurRadius: 5.0,
                   ),]
               ),
-              height: (!_b1 && !_b2)?size.height * 0.8:(_b1 && _b2)?size.height:size.height * 0.9,
+              height: (!_b1 && !_b2)?size.height * 1.2:(_b1 && _b2)?size.height:size.height * 1.4,
               width: size.width *0.9,
               child: Padding(
                 padding: EdgeInsets.all(size.height*0.02),
