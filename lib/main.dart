@@ -244,7 +244,7 @@ class LargeChildState extends State<LargeChild> {
                 child: Column(
                   children: [
                     SizedBox(height: size.height*0.01,),
-                    Text("This website designed by",
+                    Text("This web-app designed by",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.aleo(
                         color:  Colors.white,
@@ -477,7 +477,7 @@ class SmallChildState extends State<SmallChild> {
           ),
           Container(
             color: Color(0xFFE0E5EC),
-            height: size.height * 1.8,
+            height: size.height * 2.2,
             width:size.width,
             child: Column(
               children: [
@@ -529,7 +529,7 @@ class SmallChildState extends State<SmallChild> {
               child: Column(
                 children: [
                   SizedBox(height: size.width*0.02,),
-                  Text("This website designed by",
+                  Text("This web-app designed by",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.aleo(
                       color:  Colors.white,

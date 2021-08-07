@@ -63,6 +63,27 @@ class _FormState extends State<Form_>{
     }
 
   }
+  void whatsAppWebOpen(Map<String,dynamic> msg) async {
+
+    String body =
+        "Name: "+ msg['name'].toString() + "%0a" +
+            "Mobile: " + msg['mobile'].toString() + "%0a" +
+            "Address: " + msg['address'].toString() + "%0a" +
+            "Idli Batter: " +msg['idli'].toString() + " KG" +  "%0a" +
+            "Medu-vada Batter: " +msg['meduvada'].toString() + " KG" +  "%0a" +
+            "Total: " + msg['total'].toString() + "%0a" ;
+
+
+
+    var whatsappUrl ="https://api.whatsapp.com/send/?phone=918208063459&text=$body";
+    try {
+      await launch(whatsappUrl);
+      //await canLaunch(whatsappUrl)? launch(whatsappUrl):_showDialog(this.context);
+    }catch(e){
+      print(e.toString());
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -79,7 +100,7 @@ class _FormState extends State<Form_>{
                     blurRadius: 5.0,
                   ),]
               ),
-              height: (!_b1 && !_b2)?size.height * 1.2:(_b1 && _b2)?size.height:size.height * 1.4,
+              height: (!_b1 && !_b2)?size.height * 1:(_b1 && _b2)?size.height * 1.3 :size.height * 1.2,
               width: size.width *0.9,
               child: Padding(
                 padding: EdgeInsets.all(size.height*0.02),
@@ -1090,7 +1111,7 @@ class _FormState extends State<Form_>{
                               "meduvada" : _b2_count,
                               "total" : total
                             };
-                            whatsAppOpen(msg);
+                            whatsAppWebOpen(msg);
                           }else{
                             Scaffold.of(context).showSnackBar(new SnackBar(
                               duration: Duration(seconds: 2) ,
